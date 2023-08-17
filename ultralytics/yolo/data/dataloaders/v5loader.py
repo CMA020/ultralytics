@@ -196,7 +196,7 @@ class _RepeatSampler:
 
 class LoadScreenshots:
     # YOLOv5 screenshot dataloader, i.e. `python detect.py --source "screen 0 100 100 512 256"`
-    def __init__(self, source, img_size=640, stride=32, auto=True, transforms=None):
+    def __init__(self, source, img_size=1920, stride=32, auto=True, transforms=None):
         """source = [screen_number left top width height] (pixels)."""
         check_requirements('mss')
         import mss
@@ -246,7 +246,7 @@ class LoadScreenshots:
 
 class LoadImages:
     # YOLOv5 image/video dataloader, i.e. `python detect.py --source image.jpg/vid.mp4`
-    def __init__(self, path, img_size=640, stride=32, auto=True, transforms=None, vid_stride=1):
+    def __init__(self, path, img_size=1920, stride=32, auto=True, transforms=None, vid_stride=1):
         """Initialize instance variables and check for valid input."""
         if isinstance(path, str) and Path(path).suffix == '.txt':  # *.txt file with img/vid/dir on each line
             path = Path(path).read_text().rsplit()
@@ -353,7 +353,7 @@ class LoadImages:
 
 class LoadStreams:
     # YOLOv5 streamloader, i.e. `python detect.py --source 'rtsp://example.com/media.mp4'  # RTSP, RTMP, HTTP streams`
-    def __init__(self, sources='file.streams', img_size=640, stride=32, auto=True, transforms=None, vid_stride=1):
+    def __init__(self, sources='file.streams', img_size=1920, stride=32, auto=True, transforms=None, vid_stride=1):
         """Initialize YOLO detector with optional transforms and check input shapes."""
         torch.backends.cudnn.benchmark = True  # faster for fixed-size inference
         self.mode = 'stream'
@@ -454,8 +454,8 @@ class LoadImagesAndLabels(Dataset):
 
     def __init__(self,
                  path,
-                 img_size=640,
-                 batch_size=16,
+                 img_size=1920,
+                 batch_size=8,
                  augment=False,
                  hyp=None,
                  rect=False,
